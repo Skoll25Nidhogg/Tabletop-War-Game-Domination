@@ -1,27 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class CharacterSelect : MonoBehaviour
 {
-    int PlayerContador = 0;
-    public int CountPlus(int PlayerContador)//se supone que esta funcion suma el numeros de jugadores pero aun no lo hace
+    public Text TextoContador;
+    public void Update()
     {
-        if (PlayerContador < 4)
+        if (Input.GetButtonDown("izquierda"))
         {
-            PlayerContador++;
+            CountMinus();
         }
 
-        return (PlayerContador);
+        if (Input.GetButtonDown("derecha"))
+        {
+            CountPlus();
+        }
     }
 
-    public int CountMinus(int PlayerContador)//Se supone que esta en vez de sumar ahora resta xD
+    public void CountPlus()//se supone que esta funcion suma el numeros de jugadores pero aun no lo hace
     {
-        if (PlayerContador > 0)
+        int contador = Int32.Parse(TextoContador.text);
+        Debug.Log(contador);
+        if (contador < 4)
         {
-            PlayerContador--;
+            contador++;
+        }
+        TextoContador.text = (contador.ToString());
+        
+    }
+
+    public void CountMinus()//Se supone que esta en vez de sumar ahora resta xD
+    {
+        int contador = Int32.Parse(TextoContador.text);
+        if (contador > 1)
+        {
+            contador--;
         }
 
-        return (PlayerContador);
+        TextoContador.text = (contador.ToString());
     }
 }
